@@ -247,7 +247,7 @@ module InfinityTest
                 config.notifications = :growl
               end
           MESSAGE
-          ActiveSupport::Deprecation.warn(message)
+          ActiveSupport::Deprecation.new(message)
           self.notifications = notification_name
           self.instance_eval(&block) if block_given?
         end
@@ -270,7 +270,7 @@ module InfinityTest
              config.mode          = 'infinity_test_dir_that_contain_images'
            end
         MESSAGE
-        ActiveSupport::Deprecation.warn(message)
+        ActiveSupport::Deprecation.new(message)
         self.success_image = options[:success_image] || options[:sucess_image] if options[:success_image].present? || options[:sucess_image].present? # for fail typo in earlier versions.
         self.pending_image = options[:pending_image] if options[:pending_image].present?
         self.failure_image = options[:failure_image] if options[:failure_image].present?
@@ -298,7 +298,7 @@ module InfinityTest
               config.gemset           = :some_gemset
             end
         MESSAGE
-        ActiveSupport::Deprecation.warn(message)
+        ActiveSupport::Deprecation.new(message)
         self.rubies = options[:rubies] if options[:rubies].present?
         self.specific_options = options[:specific_options] if options[:specific_options].present?
         self.test_framework = options[:test_framework] if options[:test_framework].present?
@@ -311,7 +311,7 @@ module InfinityTest
       #
       def self.clear(option)
         message = '.clear(:terminal) is DEPRECATED. Please use .clear_terminal instead.'
-        ActiveSupport::Deprecation.warn(message)
+        ActiveSupport::Deprecation.new(message)
         clear_terminal
       end
 
@@ -323,7 +323,7 @@ module InfinityTest
         # There is a spec pending.
       end
 
-      private
+      # private
 
       # def self.setting_callback(callback_class, scope, &block)
       #   callback_instance = callback_class.new(scope, &block)

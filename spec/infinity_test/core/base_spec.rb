@@ -1,51 +1,51 @@
-require "spec_helper"
+require 'spec_helper'
 require 'active_support/core_ext/kernel'
 
 module InfinityTest
   describe Base do
-    describe ".setup" do
-      it "should yield self" do
+    describe '.setup' do
+      it 'yield self' do
         Base.setup do |config|
           expect(config).to be InfinityTest::Base
         end
       end
     end
 
-    describe ".using_bundler?" do
-      it "should return the same bundler accessor" do
+    describe '.using_bundler?' do
+      it 'return the same bundler accessor' do
         expect(Base.using_bundler?).to equal Base.bundler
       end
     end
 
-    describe "#verbose?" do
-      it "should return the same verbose accessor" do
+    describe '#verbose?' do
+      it 'return the same verbose accessor' do
         expect(Base.verbose?).to equal Base.verbose
       end
     end
 
-    describe ".observer" do
-      it "should have watchr as default observer" do
+    describe '.observer' do
+      it 'have watchr as default observer' do
         expect(Base.observer).to equal :watchr
       end
     end
 
-    describe ".ignore_test_files" do
-      it "should not have test files to ignore as default" do
+    describe '.ignore_test_files' do
+      it 'not have test files to ignore as default' do
         expect(Base.ignore_test_files).to eql []
       end
     end
 
-    describe "#ignore_test_folders" do
-      it "should not ignore test folders as default" do
+    describe '#ignore_test_folders' do
+      it 'not ignore test folders as default' do
         expect(Base.ignore_test_folders).to eql []
       end
     end
 
-    describe ".before" do
+    describe '.before' do
       before { pending }
-      let(:proc) { Proc.new { 'To Infinity and beyond!' } }
+      let(:proc) { proc { 'To Infinity and beyond!' } }
 
-      it "should create before callback instance and push to the callback accessor" do
+      it 'create before callback instance and push to the callback accessor' do
         expect(BeforeCallback).to receive(:new).with(:all, &proc).once.and_return(:foo)
         before_callback = Base.before(:all, &proc)
         expect(before_callback).to be :foo
@@ -53,11 +53,11 @@ module InfinityTest
       end
     end
 
-    describe ".after" do
+    describe '.after' do
       before { pending }
-      let(:proc) { Proc.new {}}
+      let(:proc) { proc }
 
-      it "should create before callback instance and push to the callback accessor" do
+      it 'create before callback instance and push to the callback accessor' do
         expect(AfterCallback).to receive(:new).with(:each, &proc).once.and_return(:foo)
         after_callback = Base.after(:each, &proc)
         expect(after_callback).to be :foo
@@ -65,18 +65,18 @@ module InfinityTest
       end
     end
 
-    describe ".notifications" do
-      it "should set the notification class accessor" do
-        silence_stream(STDOUT) do
+    describe '.notifications' do
+      it 'set the notification class accessor' do
+        silence_stream do
           Base.notifications(:growl)
           expect(Base.notifications).to be :growl
         end
       end
 
-      it "should set the images" do
-        silence_stream(STDOUT) do
+      it 'set the images' do
+        silence_stream do
           Base.notifications(:growl) do
-            show_images :success_image => 'foo', :failure_image => 'bar', :pending_image => 'baz'
+            show_images success_image: 'foo', failure_image: 'bar', pending_image: 'baz'
           end
         end
         expect(Base.success_image).to eql 'foo'
@@ -87,17 +87,17 @@ module InfinityTest
         Base.pending_image = nil
       end
 
-      it "should set the mode" do
-        silence_stream(STDOUT) do
+      it 'set the mode' do
+        silence_stream do
           Base.notifications(:growl) do
-            show_images :mode => :mortal_kombat
+            show_images mode: :mortal_kombat
           end
         end
         expect(Base.mode).to be :mortal_kombat
       end
     end
 
-    describe ".use" do
+    describe '.use' do
       before do
         @old_rubies = Base.rubies
         @old_specific_options = Base.specific_options
@@ -116,88 +116,92 @@ module InfinityTest
         Base.gemset = @gemset
       end
 
-      it "should set the rubies" do
-        silence_stream(STDOUT) do
-          Base.use :rubies => %w(foo bar)
+      it 'set the rubies' do
+        silence_stream do
+          Base.use rubies: %w(foo bar)
         end
         expect(Base.rubies).to eql %w(foo bar)
       end
 
-      it "should set the specific options" do
-        silence_stream(STDOUT) do
-          Base.use :specific_options => '-J -Ilib -Itest'
+      it 'set the specific options' do
+        silence_stream do
+          Base.use specific_options: '-J -Ilib -Itest'
         end
         expect(Base.specific_options).to eql '-J -Ilib -Itest'
       end
 
-      it "should set the test framework" do
-        silence_stream(STDOUT) do
-          Base.use :test_framework => :rspec
+      it 'set the test framework' do
+        silence_stream do
+          Base.use test_framework: :rspec
         end
         expect(Base.test_framework).to be :rspec
       end
 
-      it "should set the app framework" do
-        silence_stream(STDOUT) do
-          Base.use :app_framework => :rails
+      it 'set the app framework' do
+        silence_stream do
+          Base.use app_framework: :rails
         end
         expect(Base.framework).to be :rails
       end
 
-      it "should set the verbose mode" do
-        silence_stream(STDOUT) do
-          Base.use :verbose => false
+      it 'set the verbose mode' do
+        silence_stream do
+          Base.use verbose: false
         end
-        expect(Base.verbose).to equal false # I choose to don't use should be_false
+        expect(Base.verbose).to equal false
       end
 
-      it "should set the gemset" do
-        silence_stream(STDOUT) do
-          Base.use :gemset => 'infinity_test'
+      it 'should set the gemset' do
+        silence_stream do
+          Base.use gemset: 'infinity_test'
         end
         expect(Base.gemset).to eql 'infinity_test'
       end
     end
 
-    describe ".heuristics" do
-      it "should need to see." do
+    describe '.heuristics' do
+      it 'should need to see.' do
         pending 'Need to see what to do with the patterns to watch'
       end
     end
 
-    describe ".replace_patterns" do
-      it "should need to see" do
+    describe '.replace_patterns' do
+      it 'should need to see' do
         pending 'Need to see how improve this method.'
       end
     end
 
-    describe ".merge!" do
+    describe '.merge!' do
       let(:options) { Object.new }
       let(:configuration_merge) { Object.new }
 
-      it "should call merge on the configuration merge object" do
+      it 'should call merge on the configuration merge object' do
         expect(ConfigurationMerge).to receive(:new).with(Core::Base, options).and_return(configuration_merge)
         expect(configuration_merge).to receive(:merge!)
         Core::Base.merge!(options)
       end
     end
 
-    describe ".clear" do
-      it "should call clear_terminal method" do
-        silence_stream(STDOUT) do
+    describe '.clear' do
+      it 'should call clear_terminal method' do
+        silence_stream do
           expect(Base).to receive(:clear_terminal).and_return(true)
           Base.clear(:terminal)
         end
       end
     end
 
-    describe ".clear_terminal" do
-      it "should call system clear" do
-        silence_stream(STDOUT) do
+    describe '.clear_terminal' do
+      it 'should call system clear' do
+        silence_stream do
           expect(Base).to receive(:system).with('clear').and_return(true)
           Base.clear_terminal
         end
       end
+    end
+
+    def silence_stream(&block)
+      ActiveSupport::Deprecation.silence(&block)
     end
   end
 end
