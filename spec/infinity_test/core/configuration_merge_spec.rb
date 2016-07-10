@@ -88,35 +88,35 @@ module InfinityTest
         it "should merge with the infinity test and beyond" do
           expect(options).to receive(:infinity_and_beyond).twice.and_return(false)
           subject.merge!
-          expect(base.infinity_and_beyond).to be false
+          expect(base.infinity_and_beyond).to be(false)
         end
 
         it "should keep the base default if option infinity test and beyond is nil" do
           expect(options).to receive(:infinity_and_beyond).and_return(nil)
           subject.merge!
-          expect(base.infinity_and_beyond).to be true
+          expect(base.infinity_and_beyond).to be(true)
         end
 
         it "should keep the verbose mode when verbose mode is blank" do
           subject.merge!
-          expect(base.verbose).to be_true
+          expect(base.verbose).to be(true)
         end
 
         it "should merge the verbose mode" do
           expect(options).to receive(:verbose).twice.and_return(false)
           subject.merge!
-          expect(base.verbose).to be false
+          expect(base.verbose).to be(false)
         end
 
         it "should keep the bundler default when bundler is blank" do
           subject.merge!
-          expect(base.bundler).to be true
+          expect(base.bundler).to be(true)
         end
 
         it "should merge the verbose mode" do
           expect(options).to receive(:bundler).twice.and_return(false)
           subject.merge!
-          expect(base.bundler).to be false
+          expect(base.bundler).to be(false)
         end
       end
     end
