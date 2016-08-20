@@ -17,7 +17,7 @@ module InfinityTest
       #
       def watch(pattern_or_file, &block)
         @observer.watch(pattern_or_file.to_s) do |match_data|
-          block.call(InfinityTest::Core::ChangedFile.new(match_data))
+          yield(InfinityTest::Core::ChangedFile.new(match_data))
         end
       end
 

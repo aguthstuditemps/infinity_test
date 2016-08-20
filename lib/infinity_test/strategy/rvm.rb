@@ -28,7 +28,7 @@ module InfinityTest
       #  FalseClass: Don't Find rvm installed in /usr/local/rvm.
       #
       def self.installed_system_wide?
-        File.exist?(File.expand_path("/usr/local/rvm"))
+        File.exist?(File.expand_path('/usr/local/rvm'))
       end
     end
   end

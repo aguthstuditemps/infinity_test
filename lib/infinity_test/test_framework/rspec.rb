@@ -18,7 +18,11 @@ module InfinityTest
       end
 
       def patterns
-        { :examples => /(\d+) example/, :failures => /(\d+) failure/, :pending => /(\d+) pending/ }
+        {
+          examples: /(\d+) example/,
+          failures: /(\d+) failure/,
+          pending: /(\d+) pending/
+        }
       end
 
       def success?

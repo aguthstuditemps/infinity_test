@@ -12,7 +12,7 @@ module InfinityTest
         raise NotImplementedError, "not implemented in #{self}"
       end
 
-      def test_dir=(dir)
+      def test_dir=(_)
         raise NotImplementedError, "not implemented in #{self}"
       end
 
@@ -53,9 +53,9 @@ module InfinityTest
       private
 
       def final_results(message)
-        lines    = message.split("\n")
+        lines = message.split("\n")
 
-        patterns.map do |pattern_name, pattern|
+        patterns.map do |_, pattern|
           lines.find { |line| line =~ pattern }
         end.flatten.uniq
       end
