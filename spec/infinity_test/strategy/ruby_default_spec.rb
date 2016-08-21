@@ -1,4 +1,4 @@
-require "spec_helper"
+require 'spec_helper'
 
 module InfinityTest
   module Strategy
@@ -8,14 +8,14 @@ module InfinityTest
       subject { RubyDefault.new(continuous_test_server) }
       it_should_behave_like 'a infinity test strategy'
 
-      describe ".run?" do
-        it "should return true when don't pass any ruby versions to run tests" do
+      describe '.run?' do
+        it 'should return true when do not pass any ruby versions to run tests' do
           Core::Base.stub(:rubies).and_return([])
           expect(RubyDefault).to be_run
         end
 
-        it "should return false when pass some ruby version to run tests" do
-          Core::Base.stub(:rubies).and_return(['ree', 'jruby'])
+        it 'should return false when pass some ruby version to run tests' do
+          Core::Base.stub(:rubies).and_return(%w(ree jruby))
           expect(RubyDefault).not_to be_run
         end
       end

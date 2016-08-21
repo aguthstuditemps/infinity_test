@@ -1,0 +1,10 @@
+Documentation:
+  Enabled: false
+Metrics/LineLength:
+  Max: 100
+Style/DotPosition:
+  EnforcedStyle: leading
+Style/AndOr:
+  EnforcedStyle: conditionals
+Style/Not:
+  Enabled: false

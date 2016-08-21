@@ -11,7 +11,7 @@ module InfinityTest
 
       def run!
         SynchronizeStdout.new do
-          open("| #{@command}", "r") do |file|
+          open("| #{@command}", 'r') do |file|
             @command_output = CommandOutput.new(file)
             @command_output.puts
           end

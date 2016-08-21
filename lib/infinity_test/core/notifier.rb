@@ -5,7 +5,8 @@ module InfinityTest
 
       attr_reader :test_framework, :library
 
-      IMAGES = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'images'))
+      IMAGES_DIR = File.join(File.dirname(__FILE__), '..', '..', '..', 'images')
+      IMAGES = File.expand_path(IMAGES_DIR)
 
       delegate :test_message, to: :test_framework
 
@@ -41,7 +42,7 @@ module InfinityTest
       end
 
       def find_image(image_type)
-        Dir.glob(File.join(images_dir, "#{image_type.to_s}*")).first
+        Dir.glob(File.join(images_dir, "#{image_type}*")).first
       end
 
       def images_dir

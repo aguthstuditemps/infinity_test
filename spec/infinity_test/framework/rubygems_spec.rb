@@ -5,11 +5,17 @@ module InfinityTest
     describe Rubygems do
       let(:observer) { double('Observer') }
       let(:test_framework) { double('TestFramework') }
-      let(:continuous_test_server) { double('ContinuousTestServer', observer: observer, test_framework: test_framework) }
+      let(:continuous_test_server) do
+        double(
+          'ContinuousTestServer',
+          observer: observer,
+          test_framework: test_framework
+        )
+      end
       subject { Rubygems.new(continuous_test_server) }
 
-      describe "#heuristics" do
-        it "should add heuristics" do
+      describe '#heuristics' do
+        it 'should add heuristics' do
           expect(observer).to receive(:watch_dir).exactly(2)
           expect(observer).to receive(:watch)
           expect(test_framework).to receive(:test_helper_file)
@@ -18,13 +24,13 @@ module InfinityTest
         end
       end
 
-      describe ".run?" do
-        it "should return true if have a .gemspec in the user current dir" do
+      describe '.run?' do
+        it 'should return true if have a .gemspec in the user current dir' do
           expect(Dir).to receive(:[]).with('*.gemspec').and_return(['infinity_test.gemspec'])
           expect(Rubygems).to be_run
         end
 
-        it "should return false if don't have a .gemspec in the user current dir" do
+        it 'should return false if do not have a .gemspec in the user current dir' do
           expect(Dir).to receive(:[]).with('*.gemspec').and_return([])
           expect(Rubygems).not_to be_run
         end

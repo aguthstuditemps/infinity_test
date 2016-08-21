@@ -4,7 +4,7 @@ module InfinityTest
   module Observer
     describe Watchr do
       let(:continuous_server) { double }
-      subject { Watchr.new(continuous_server)}
+      subject { Watchr.new(continuous_server) }
       it_should_behave_like 'an infinity test observer'
 
       describe '#observer' do
@@ -37,7 +37,9 @@ module InfinityTest
           handler = double
           controller = controller
           expect(::Watchr.handler).to receive(:new).and_return(handler)
-          expect(::Watchr::Controller).to receive(:new).with(subject.observer, handler).and_return(controller)
+          expect(::Watchr::Controller).to receive(:new)
+            .with(subject.observer, handler)
+            .and_return(controller)
           expect(controller).to receive(:run).and_return(:running)
           expect(subject.start).to equal :running
         end

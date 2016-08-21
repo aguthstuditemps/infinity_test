@@ -46,7 +46,10 @@ module InfinityTest
       let(:proc) { proc { 'To Infinity and beyond!' } }
 
       it 'create before callback instance and push to the callback accessor' do
-        expect(BeforeCallback).to receive(:new).with(:all, &proc).once.and_return(:foo)
+        expect(BeforeCallback).to receive(:new)
+          .with(:all, &proc)
+          .once
+          .and_return(:foo)
         before_callback = Base.before(:all, &proc)
         expect(before_callback).to be :foo
         expect(Base.callbacks).to be_include before_callback
@@ -58,7 +61,10 @@ module InfinityTest
       let(:proc) { proc }
 
       it 'create before callback instance and push to the callback accessor' do
-        expect(AfterCallback).to receive(:new).with(:each, &proc).once.and_return(:foo)
+        expect(AfterCallback).to receive(:new)
+          .with(:each, &proc)
+          .once
+          .and_return(:foo)
         after_callback = Base.after(:each, &proc)
         expect(after_callback).to be :foo
         expect(Base.callbacks).to be_include after_callback
@@ -76,7 +82,11 @@ module InfinityTest
       it 'set the images' do
         silence_stream do
           Base.notifications(:growl) do
-            show_images success_image: 'foo', failure_image: 'bar', pending_image: 'baz'
+            show_images(
+              success_image: 'foo',
+              failure_image: 'bar',
+              pending_image: 'baz'
+            )
           end
         end
         expect(Base.success_image).to eql 'foo'
@@ -176,7 +186,9 @@ module InfinityTest
       let(:configuration_merge) { Object.new }
 
       it 'should call merge on the configuration merge object' do
-        expect(ConfigurationMerge).to receive(:new).with(Core::Base, options).and_return(configuration_merge)
+        expect(ConfigurationMerge).to receive(:new)
+          .with(Core::Base, options)
+          .and_return(configuration_merge)
         expect(configuration_merge).to receive(:merge!)
         Core::Base.merge!(options)
       end

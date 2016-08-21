@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module InfinityTest
   describe ChangedFile do
-    let(:match_data) { /(.)(.)(\d+)(\d)/.match("THX1138.") }
+    let(:match_data) { /(.)(.)(\d+)(\d)/.match('THX1138.') }
     let(:changed_file) { ChangedFile.new(match_data) }
 
     describe '#name' do

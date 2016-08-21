@@ -28,7 +28,7 @@ end
 class BaseFixture
   attr_accessor :strategy, :test_framework, :framework
 
-  def initialize(options={})
+  def initialize(options = {})
     @strategy       = options[:strategy]
     @framework      = options[:framework]
     @test_framework = options[:test_framework]

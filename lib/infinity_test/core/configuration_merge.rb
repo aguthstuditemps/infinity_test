@@ -3,8 +3,12 @@ module InfinityTest
     class ConfigurationMerge
       attr_accessor :base, :options
 
-      delegate :strategy, :rubies, :test_framework, :framework, :to => :options
-      delegate :specific_options, :infinity_and_beyond, :verbose, :bundler, :to => :options
+      delegate :strategy, :rubies, :test_framework, :framework, to: :options
+      delegate :specific_options,
+               :infinity_and_beyond,
+               :verbose,
+               :bundler,
+               to: :options
 
       def initialize(base, options)
         @base = base

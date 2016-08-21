@@ -27,10 +27,10 @@ module InfinityTest
       def signal
         Signal.trap('INT') do
           if @interrupt
-            puts " To Infinity and Beyond!"
+            puts ' To Infinity and Beyond!'
             exit
           else
-            puts " Are you sure? :S ... Interrupt a second time to quit!"
+            puts ' Are you sure? :S ... Interrupt a second time to quit!'
             @interrupt = true
             Kernel.sleep 1.5
             @interrupt = false

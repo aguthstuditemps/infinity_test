@@ -22,7 +22,7 @@ module InfinityTest
       #  FalseClass: Don't Find a gemspec in the user current dir
       #
       def self.run?
-        Dir["*.gemspec"].present?
+        Dir['*.gemspec'].present?
       end
     end
   end

@@ -4,7 +4,7 @@ module InfinityTest
       # Just Syntax Sugar to add the keyword in the command
       #
       def add(command)
-        self << " #{command.to_s}"
+        self << " #{command}"
         self
       end
 

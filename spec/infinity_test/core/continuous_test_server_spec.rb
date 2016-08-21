@@ -52,7 +52,9 @@ module InfinityTest
           let(:base) { double(notifications: :growl) }
 
           before do
-            expect(continuous_test_server).to receive(:test_framework).exactly(:twice).and_return(test_framework)
+            expect(continuous_test_server).to receive(:test_framework)
+              .exactly(:twice)
+              .and_return(test_framework)
             expect(test_framework).to receive(:test_message=).with(test_message)
           end
 
@@ -76,7 +78,9 @@ module InfinityTest
         let(:test_framework) { double }
 
         before do
-          expect(continuous_test_server).to receive(:test_framework).twice.and_return(test_framework)
+          expect(continuous_test_server).to receive(:test_framework)
+            .twice
+            .and_return(test_framework)
         end
 
         it 'run strategy agains and ensure the test files is nil after' do

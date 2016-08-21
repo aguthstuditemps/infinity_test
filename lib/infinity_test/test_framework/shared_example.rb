@@ -1,7 +1,8 @@
 module InfinityTest
   module TestFramework
     module SharedExample
-      # Shared Examples to use in the RSpec specs when you want create your own infinity test wrapper test framework
+      # Shared Examples to use in the RSpec specs when you want create your
+      # own infinity test wrapper test framework
       #
       # ==== Examples
       #

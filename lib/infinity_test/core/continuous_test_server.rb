@@ -37,7 +37,10 @@ module InfinityTest
         if notifications.present?
           test_framework.test_message = strategy_result
 
-          Core::Notifier.new(library: notifications, test_framework: test_framework).notify
+          Core::Notifier.new(
+            library: notifications,
+            test_framework: test_framework
+          ).notify
         end
       end
 
@@ -53,25 +56,29 @@ module InfinityTest
       # Returns the instance for the configured strategy.
       #
       def strategy
-        @strategy ||= "InfinityTest::Strategy::#{base.strategy.to_s.classify}".constantize.new(self)
+        klass = "InfinityTest::Strategy::#{base.strategy.to_s.classify}"
+        @strategy ||= klass.constantize.new(self)
       end
 
       # Return a cached test framework instance.
       #
       def test_framework
-        @test_framework ||= "::InfinityTest::TestFramework::#{base.test_framework.to_s.classify}".constantize.new
+        klass = "::InfinityTest::TestFramework::#{base.test_framework.to_s.classify}"
+        @test_framework ||= klass.constantize.new
       end
 
       # Return a framework instance based on the base framework accessor.
       #
       def framework
-        @framework ||= "::InfinityTest::Framework::#{base.framework.to_s.camelize}".constantize.new(self)
+        klass = "::InfinityTest::Framework::#{base.framework.to_s.camelize}"
+        @framework ||= klass.constantize.new(self)
       end
 
       # Return a cached observer instance by the observer accessor.
       #
       def observer
-        @observer ||= "::InfinityTest::Observer::#{base.observer.to_s.classify}".constantize.new(self)
+        klass = "::InfinityTest::Observer::#{base.observer.to_s.classify}"
+        @observer ||= klass.constantize.new(self)
       end
     end
   end

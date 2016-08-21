@@ -5,8 +5,8 @@ module InfinityTest
     describe Rspec do
       it_should_behave_like 'a infinity test test framework'
 
-      describe "#test_dir" do
-        it "should return spec as test dir" do
+      describe '#test_dir' do
+        it 'should return spec as test dir' do
           expect(subject.test_dir).to eq 'spec'
         end
       end
@@ -26,23 +26,26 @@ module InfinityTest
         end
       end
 
-      describe "#test_helper_file" do
-        it "should be the spec helper" do
+      describe '#test_helper_file' do
+        it 'should be the spec helper' do
           expect(subject.test_helper_file).to eq 'spec/spec_helper.rb'
         end
       end
 
-      describe "#binary" do
-        it "should return rspec as binary" do
+      describe '#binary' do
+        it 'should return rspec as binary' do
           expect(subject.binary).to eq 'rspec'
         end
       end
 
       describe '#test_message' do
         subject(:rspec) { Rspec.new }
+        let(:test_message) do
+          'Finished in 2.19 seconds\n\e[33m162 examples, 0 failures, 8 pending\e[0m\n'
+        end
 
         it 'returns the final specs results' do
-          rspec.test_message = "Finished in 2.19 seconds\n\e[33m162 examples, 0 failures, 8 pending\e[0m\n"
+          rspec.test_message = test_message
           expect(rspec.test_message).to eq '162 examples, 0 failures, 8 pending'
         end
       end
@@ -52,7 +55,7 @@ module InfinityTest
 
         context 'when is test message with ZERO failures and ZERO pending' do
           before do
-            rspec.test_message = "162 examples, 0 failures, 0 pending"
+            rspec.test_message = '162 examples, 0 failures, 0 pending'
           end
 
           it 'returns true' do
@@ -62,7 +65,7 @@ module InfinityTest
 
         context 'when is test message with ONE failure and ZERO pending' do
           before do
-            rspec.test_message = "162 examples, 1 failures, 0 pending"
+            rspec.test_message = '162 examples, 1 failures, 0 pending'
           end
 
           it 'returns false' do
@@ -72,7 +75,7 @@ module InfinityTest
 
         context 'when is test message with ZERO failures and ONE pending' do
           before do
-            rspec.test_message = "162 examples, 0 failures, 1 pending"
+            rspec.test_message = '162 examples, 0 failures, 1 pending'
           end
 
           it 'returns false' do
@@ -86,7 +89,7 @@ module InfinityTest
 
         context 'when is test message with ONE failure and ZERO pending' do
           before do
-            rspec.test_message = "162 examples, 1 failures, 0 pending"
+            rspec.test_message = '162 examples, 1 failures, 0 pending'
           end
 
           it 'returns true' do
@@ -96,7 +99,7 @@ module InfinityTest
 
         context 'when is test message with ZERO failures and ZERO pending' do
           before do
-            rspec.test_message = "162 examples, 0 failures, 0 pending"
+            rspec.test_message = '162 examples, 0 failures, 0 pending'
           end
 
           it 'returns false' do
@@ -106,7 +109,7 @@ module InfinityTest
 
         context 'when is test message with ZERO failures and ONE pending' do
           before do
-            rspec.test_message = "162 examples, 0 failures, 1 pending"
+            rspec.test_message = '162 examples, 0 failures, 1 pending'
           end
 
           it 'returns false' do

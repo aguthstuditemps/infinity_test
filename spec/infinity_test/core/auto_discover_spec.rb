@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 module InfinityTest
   describe AutoDiscover do
     let(:base) { BaseFixture.new }
