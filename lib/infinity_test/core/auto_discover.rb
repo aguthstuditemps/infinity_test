@@ -2,6 +2,7 @@ module InfinityTest
   module Core
     class AutoDiscover
       attr_reader :base
+      delegate :strategy, :framework, :test_framework, to: :base
 
       def initialize(base)
         @base = base
@@ -30,22 +31,23 @@ module InfinityTest
       def auto_discover(library_type)
         klass = "InfinityTest::#{library_type.to_s.camelize}::Base"
         library_base_class = klass.constantize
-        library = library_base_class.subclasses.find do |subclass|
-          subclass.run?
-        end
+        library = library_base_class.subclasses.find(&:run?)
 
         if library.present?
           library.name.demodulize.underscore.to_sym
         else
-          subclasses = library_base_class.subclasses.map { |subklass| subklass }
-          message = %{
-            The InfinityTest::Core::AutoDiscover doesn't discover nothing to run
-            Are you using a #{library_type} that Infinity test knows?
-
-            Infinity Test #{library_type.to_s.pluralize}: #{subclasses}
-          }
-          raise Exception, message
+          raise Exception, library_not_present(library_base_class, library_type)
         end
+      end
+
+      def library_not_present(library_base_class, library_type)
+        subclasses = library_base_class.subclasses.map { |subklass| subklass }
+        %(
+          The InfinityTest::Core::AutoDiscover doesn't discover nothing to run
+          Are you using a #{library_type} that Infinity test knows?
+
+          Infinity Test #{library_type.to_s.pluralize}: #{subclasses}
+        )
       end
     end
   end

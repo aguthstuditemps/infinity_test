@@ -160,7 +160,8 @@ module InfinityTest
         yield self
       end
 
-      # Receives a object that quacks like InfinityTest::Options and do the merge with self(Base class).
+      # Receives a object that quacks like InfinityTest::Options
+      # and do the merge with self(Base class).
       #
       def self.merge!(options)
         ConfigurationMerge.new(self, options).merge!
@@ -238,7 +239,7 @@ module InfinityTest
       #
       def self.notifications(notification_name = nil, &block)
         if notification_name.blank?
-          self.class_variable_get(:@@notifications)
+          class_variable_get(:@@notifications)
         else
           message = <<-MESSAGE
             .notifications is DEPRECATED.
@@ -249,7 +250,7 @@ module InfinityTest
           MESSAGE
           ActiveSupport::Deprecation.new(message)
           self.notifications = notification_name
-          self.instance_eval(&block) if block_given?
+          instance_eval(&block) if block_given?
         end
       end
 
@@ -271,7 +272,7 @@ module InfinityTest
            end
         MESSAGE
         ActiveSupport::Deprecation.new(message)
-        self.success_image = options[:success_image] || options[:sucess_image] if options[:success_image].present? || options[:sucess_image].present? # for fail typo in earlier versions.
+        self.success_image = options[:success_image] if options[:success_image].present?
         self.pending_image = options[:pending_image] if options[:pending_image].present?
         self.failure_image = options[:failure_image] if options[:failure_image].present?
         self.mode = options[:mode] if options[:mode].present?

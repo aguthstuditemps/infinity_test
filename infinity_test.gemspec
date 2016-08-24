@@ -4,18 +4,20 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'infinity_test/core/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'infinity_test'
-  spec.version       = InfinityTest::Core::VERSION
-  spec.authors       = ["Tomas D'Stefano"]
-  spec.email         = ['tomas_stefano@successoft.com']
-  spec.description   = 'Infinity Test is a continuous testing library and a flexible alternative to Autotest and Guard.'
-  spec.summary       = 'Infinity Test is a continuous testing library and a flexible alternative to Autotest and Guard.'
-  spec.homepage      = 'https://github.com/tomas-stefano/infinity_test'
-  spec.license       = 'MIT'
+  spec.name = 'infinity_test'
+  spec.version = InfinityTest::Core::VERSION
+  spec.authors = ["Tomas D'Stefano"]
+  spec.email = ['tomas_stefano@successoft.com']
+  spec.description = %(Infinity Test is a continuous testing library
+  and a flexible alternative to Autotest and Guard.')
+  spec.summary = %('Infinity Test is a continuous testing library
+  and a flexible alternative to Autotest and Guard.')
+  spec.homepage = 'https://github.com/tomas-stefano/infinity_test'
+  spec.license = 'MIT'
 
-  spec.files         = `git ls-files`.split($/)
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.files = `git ls-files`.split($RS)
+  spec.executables = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.test_files = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
   spec.add_dependency 'activesupport', '>= 3.2.0'
@@ -29,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'pry'
 
-  spec.post_install_message = %q{
+  spec.post_install_message = %{
   --------------------------------------------------------------------------------
                   T O    I N F I N I T Y   A N D   B E Y O N D !!!
 

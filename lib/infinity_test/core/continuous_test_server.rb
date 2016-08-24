@@ -47,10 +47,10 @@ module InfinityTest
       # Start to monitoring files in the project.
       #
       def start_observer
-        if infinity_and_beyond.present?
-          framework.heuristics!
-          observer.start!
-        end
+        return unless infinity_and_beyond.present?
+
+        framework.heuristics!
+        observer.start!
       end
 
       # Returns the instance for the configured strategy.

@@ -8,3 +8,5 @@ Style/AndOr:
   EnforcedStyle: conditionals
 Style/Not:
   Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false

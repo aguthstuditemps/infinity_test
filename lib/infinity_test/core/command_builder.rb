@@ -36,10 +36,10 @@ module InfinityTest
       #   command.bundle.install
       #
       def method_missing(method_name, *args, &block)
-        if self.empty?
-          self << "#{method_name.to_s}"
+        if empty?
+          self << method_name.to_s
         else
-          self << " #{method_name.to_s}"
+          self << " #{method_name}"
         end
         self
       end

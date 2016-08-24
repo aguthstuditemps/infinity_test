@@ -30,7 +30,7 @@ module InfinityTest
       end
 
       def failure?
-        @failures > 0
+        @failures.positive?
       end
     end
   end
