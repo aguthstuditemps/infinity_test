@@ -9,7 +9,7 @@ module InfinityTest
       # <b>Don't need #super or #respond_to here.</b>
       # <b>This class will be removed in infinity_test 2.0.1</b>
       #
-      def respond_to_missing?(method_name, _include_private = true)
+      def respond_to_missing?(_method_name, _include_private = true)
         true
       end
 

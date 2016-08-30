@@ -29,7 +29,7 @@ module InfinityTest
       end
 
       def puts
-        until @file.eof? do
+        until @file.eof?
           test_line = @file.getc or break
           print(test_line)
           @line.push(test_line)

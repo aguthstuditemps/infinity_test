@@ -7,11 +7,11 @@ module InfinityTest
         @continuous_test_server = continuous_test_server
       end
 
-      def watch(pattern_or_file, &block)
+      def watch(_pattern_or_file, &block)
         raise NotImplementedError, "not implemented in #{self}"
       end
 
-      def watch_dir(dir_name, extension, &block)
+      def watch_dir(_dir_name, _extension, &block)
         raise NotImplementedError, "not implemented in #{self}"
       end
 
