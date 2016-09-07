@@ -42,35 +42,15 @@ module InfinityTest
     end
 
     describe '.before' do
-      before { pending }
       let(:proc) { proc { 'To Infinity and beyond!' } }
 
-      it 'create before callback instance and push to the callback accessor' do
-        pending
-        # expect(BeforeCallback).to receive(:new)
-        #   .with(:all, &proc)
-        #   .once
-        #   .and_return(:foo)
-        # before_callback = Base.before(:all, &proc)
-        # expect(before_callback).to be :foo
-        # expect(Base.callbacks).to be_include before_callback
-      end
+      it 'create before callback instance and push to the callback accessor'
     end
 
     describe '.after' do
-      before { pending }
       let(:proc) { proc }
 
-      it 'create before callback instance and push to the callback accessor' do
-        pending
-        #expect(AfterCallback).to receive(:new)
-        #  .with(:each, &proc)
-        #  .once
-        #  .and_return(:foo)
-        # after_callback = Base.after(:each, &proc)
-        # expect(after_callback).to be :foo
-        # expect(Base.callbacks).to be_include after_callback
-      end
+      it 'create before callback instance and push to the callback accessor'
     end
 
     describe '.notifications' do
@@ -172,15 +152,11 @@ module InfinityTest
     end
 
     describe '.heuristics' do
-      it 'should need to see.' do
-        pending 'Need to see what to do with the patterns to watch'
-      end
+      it 'think of the implementation of heuristics DSL'
     end
 
     describe '.replace_patterns' do
-      it 'should need to see' do
-        pending 'Need to see how improve this method.'
-      end
+      it 'Re-think the necessary of this feature'
     end
 
     describe '.merge!' do

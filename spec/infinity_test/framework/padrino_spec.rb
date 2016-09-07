@@ -5,10 +5,7 @@ module InfinityTest
     describe Padrino do
       subject { Padrino.new(Core::Base) }
       describe '#heuristics' do
-        before { pending }
-        it 'should add heuristics' do
-          expect { subject.heuristics }.to_not raise_exception
-        end
+        it 'add heuristics to padrino dir structure'
       end
 
       describe '.run?' do
