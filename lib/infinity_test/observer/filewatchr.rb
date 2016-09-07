@@ -1,13 +1,10 @@
-require 'watchr'
-
 module InfinityTest
   module Observer
-    class Watchr < Base
+    class Filewatchr < Base
       attr_reader :observer
 
       def initialize(continuous_test_server)
         super
-        @observer = ::Watchr::Script.new
       end
 
       # ==== Examples
@@ -16,9 +13,7 @@ module InfinityTest
       #   watch('test/test_helper.rb') { run_all() }
       #
       def watch(pattern_or_file, &block)
-        @observer.watch(pattern_or_file.to_s) do |match_data|
-          yield(InfinityTest::Core::ChangedFile.new(match_data))
-        end
+        @observer
       end
 
       # ==== Examples
@@ -30,15 +25,11 @@ module InfinityTest
       #   watch_dir(:test, :js) { |file| puts [file.name, file.path, file.match_data] }
       #
       def watch_dir(dir_name, extension = :rb, &block)
-        watch("^#{dir_name}/*/(.*).#{extension}", &block)
       end
 
       # Start the continuous test server.
       #
       def start
-        @handler    = ::Watchr.handler.new
-        @controller = ::Watchr::Controller.new(@observer, @handler)
-        @controller.run
       end
     end
   end

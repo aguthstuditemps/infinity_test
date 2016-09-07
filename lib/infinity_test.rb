@@ -34,7 +34,7 @@ module InfinityTest
 
   module Observer
     autoload :Base, 'infinity_test/observer/base'
-    autoload :Watchr, 'infinity_test/observer/watchr'
+    autoload :Filewatchr, 'infinity_test/observer/filewatchr'
     autoload :EventMachine, 'infinity_test/observer/event_machine'
     autoload :SharedExample, 'infinity_test/observer/shared_example'
   end

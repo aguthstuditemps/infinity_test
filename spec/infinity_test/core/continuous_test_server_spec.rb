@@ -19,7 +19,7 @@ module InfinityTest
           before do
             expect(base).to receive(:infinity_and_beyond).and_return(true)
             base.stub(:framework).and_return(:rails)
-            base.stub(:observer).and_return(:watchr)
+            base.stub(:observer).and_return(:filewatchr)
           end
 
           it 'add framework heuristics and start the observer' do

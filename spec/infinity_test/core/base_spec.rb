@@ -25,7 +25,7 @@ module InfinityTest
 
     describe '.observer' do
       it 'have watchr as default observer' do
-        expect(Base.observer).to equal :watchr
+        expect(Base.observer).to equal :filewatchr
       end
     end
 

@@ -53,7 +53,7 @@ module InfinityTest
       #  * watchr
       #
       cattr_accessor :observer
-      self.observer = :watchr
+      self.observer = :filewatchr
 
       # Ignore test files.
       #
